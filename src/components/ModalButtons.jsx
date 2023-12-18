@@ -1,16 +1,27 @@
 import React from 'react';
 
-const ModalButtons = ({selectedModal, openModal}) => {
-    return (
-        <div className="d-flex justify-content-center gap-3">
-            <button className={`btn btn-lg btn-outline-primary ${selectedModal === 'A' ? 'active' : ''}`} type="button" onClick={() => openModal('A')}>
-                {selectedModal === 'A' ? 'All Contacts' : 'Show All Contacts'}
-            </button>
-            <button className={`btn btn-lg btn-outline-warning ${selectedModal === 'B' ? 'active' : ''}`} type="button" onClick={() => openModal('B')}>
-                {selectedModal === 'B' ? 'US Contacts' : 'Show US Contacts'}
-            </button>
-        </div>
-    );
+const ModalButtons = ({ openModal }) => {
+
+  return (
+    <div className="d-flex justify-content-center gap-3">
+      <button
+        className={`btn btn-md text-white`}
+        type="button"
+        onClick={() => openModal('A')}
+        style={{ backgroundColor: '#46139f' }}
+      >
+        All Contacts
+      </button>
+      <button
+        className={`btn btn-md text-white`}
+        type="button"
+        onClick={() => openModal('B')}
+        style={{ backgroundColor: '#ff7f50' }}
+      >
+        US Contacts
+      </button>
+    </div>
+  );
 };
 
 export default ModalButtons;

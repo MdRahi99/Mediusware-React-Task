@@ -107,7 +107,6 @@ const Problem2 = () => {
         <h4 className='text-center text-uppercase mb-5'>Problem-2</h4>
 
         <ModalButtons
-        selectedModal={selectedModal}
         openModal={openModal} />
 
         {(showModalA || showModalB || showModalC) && (

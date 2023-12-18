@@ -1,23 +1,30 @@
 import React from 'react';
 
-const ModalOptions = ({selectedModal, openModal, closeModalA, closeModalB}) => {
+const ModalOptions = ({ selectedModal, openModal, closeModalA, closeModalB }) => {
     return (
         <div className="d-flex gap-4">
             <button
+                className={`btn btn-md text-white`}
                 type="button"
-                className={`btn btn-sm btn-outline-primary ${selectedModal === 'A' ? 'active' : ''}`}
                 onClick={() => openModal('A')}
+                style={{ backgroundColor: '#46139f' }}
             >
-                {selectedModal === 'A' ? 'All Contacts' : 'Show All Contacts'}
+                All Contacts
             </button>
             <button
+                className={`btn btn-md text-white`}
                 type="button"
-                className={`btn btn-sm btn-outline-warning ${selectedModal === 'B' ? 'active' : ''}`}
                 onClick={() => openModal('B')}
+                style={{ backgroundColor: '#ff7f50' }}
             >
-                {selectedModal === 'B' ? 'US Contacts' : 'Show US Contacts'}
+                US Contacts
             </button>
-            <button type="button" className="btn btn-sm btn-outline-secondary" onClick={selectedModal === 'A' ? closeModalA : closeModalB}>
+            <button
+                className={`btn btn-md`}
+                type="button"
+                onClick={() => openModal('C')}
+                style={{ backgroundColor: '#fff', borderColor: '#46139f' }}
+            >
                 Close
             </button>
         </div>
