@@ -14,11 +14,19 @@ const Problem2 = () => {
     setShowModalB(true);
   };
 
+  const closeModalA = () => {
+    setShowModalA(false);
+  };
+
+  const closeModalB = () => {
+    setShowModalB(false);
+  };
+
   return (
     <div className="container">
       <div className="row justify-content-center mt-5">
         <h4 className='text-center text-uppercase mb-5'>Problem-2</h4>
-        
+
         <div className="d-flex justify-content-center gap-3">
           <button className="btn btn-lg btn-outline-primary" type="button" onClick={openModalA}>All Contacts</button>
           <button className="btn btn-lg btn-outline-warning" type="button" onClick={openModalB}>US Contacts</button>
@@ -30,10 +38,15 @@ const Problem2 = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">Modal A</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowModalA(false)}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeModalA}></button>
                 </div>
                 <div className="modal-body">
                   <p>This is Modal A content.</p>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-outline-primary" onClick={openModalA}>All Contacts</button>
+                  <button type="button" className="btn btn-outline-warning" onClick={openModalB}>US Contacts</button>
+                  <button type="button" className="btn btn-outline-secondary" onClick={closeModalA}>Close</button>
                 </div>
               </div>
             </div>
@@ -46,10 +59,15 @@ const Problem2 = () => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">Modal B</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={() => setShowModalB(false)}></button>
+                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={closeModalB}></button>
                 </div>
                 <div className="modal-body">
                   <p>This is Modal B content.</p>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-outline-primary" onClick={openModalA}>All Contacts</button>
+                  <button type="button" className="btn btn-outline-warning" onClick={openModalB}>US Contacts</button>
+                  <button type="button" className="btn btn-outline-secondary" onClick={closeModalB}>Close</button>
                 </div>
               </div>
             </div>
