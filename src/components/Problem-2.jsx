@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 const Problem2 = () => {
   const [showModalA, setShowModalA] = useState(false);
   const [showModalB, setShowModalB] = useState(false);
+  const [showModalC, setShowModalC] = useState(false);
   const [onlyEven, setOnlyEven] = useState(false);
   const [contacts, setContacts] = useState([]);
   const [selectedModal, setSelectedModal] = useState('');
+  const [selectedContact, setSelectedContact] = useState(null);
 
   useEffect(() => {
     fetch('/contactsData.json')
@@ -16,13 +18,9 @@ const Problem2 = () => {
 
   const openModal = (modal) => {
     setSelectedModal(modal);
-    if (modal === 'A') {
-      setShowModalA(true);
-      setShowModalB(false);
-    } else if (modal === 'B') {
-      setShowModalA(false);
-      setShowModalB(true);
-    }
+    setShowModalA(modal === 'A');
+    setShowModalB(modal === 'B');
+    setShowModalC(false); 
   };
 
   const closeModalA = () => {
@@ -31,6 +29,15 @@ const Problem2 = () => {
 
   const closeModalB = () => {
     setShowModalB(false);
+  };
+
+  const openModalC = (contact) => {
+    setSelectedContact(contact);
+    setShowModalC(true);
+  };
+
+  const closeModalC = () => {
+    setShowModalC(false);
   };
 
   const handleCheckboxChange = () => {
@@ -61,21 +68,33 @@ const Problem2 = () => {
           </button>
         </div>
 
-        {(showModalA || showModalB) && (
+        {(showModalA || showModalB || showModalC) && (
           <div className="modal" tabIndex="-1" role="dialog" style={{ display: 'block' }}>
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">{`Modal ${selectedModal}`}</h5>
-                  <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={selectedModal === 'A' ? closeModalA : closeModalB}></button>
                 </div>
                 <div className="modal-body d-flex flex-column gap-4">
-                  <ol>
-                    {filteredContacts.map(contact => (
-                      <li key={contact.id}>{contact.name}</li>
-                    ))}
-                  </ol>
-                  <div className="d-flex gap-4 mt-4">
+                  {showModalC ? (
+                    <div>
+                      <p>Contact ID: {selectedContact.id}</p>
+                      <p>Name: {selectedContact.name}</p>
+                      <p>Country: {selectedContact.country}</p>
+                      <button type="button" className="btn btn-sm btn-outline-secondary" onClick={closeModalC}>
+                        Back
+                      </button>
+                    </div>
+                  ) : (
+                    <ol>
+                      {filteredContacts.map(contact => (
+                        <li key={contact.id} onClick={() => openModalC(contact)} style={{ cursor: 'pointer' }}>
+                          {contact.name}
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                  <div className="d-flex gap-4">
                     <button type="button" className={`btn btn-sm btn-outline-primary ${selectedModal === 'A' ? 'active' : ''}`} onClick={() => openModal('A')}>
                       {selectedModal === 'A' ? 'All Contacts' : 'Show All Contacts'}
                     </button>
